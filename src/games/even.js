@@ -1,13 +1,4 @@
-import { isEven, getRandomNumber } from '../utils.js';
-
-const castYesNo = (val) => {
-  const values = ['no', 'yes'];
-  const i = Number(val);
-  if (Number.isNaN(i)) {
-    return values[0];
-  }
-  return values[i % values.length];
-};
+import { castYesNo, isEven, getRandomNumber } from '../utils.js';
 
 const evenGame = (maxNumber = 0xffffff) => {
   const number = getRandomNumber(maxNumber);

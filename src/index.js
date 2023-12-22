@@ -7,11 +7,15 @@ import { interpolate } from './utils.js';
 import evenGame from './games/even.js';
 import calcGame from './games/calc.js';
 import gcdGame from './games/gcd.js';
+import progressionGame from './games/progression.js';
+import primeGame from './games/prime.js';
 
 const gameRules = {
   even: ['Answer "yes" if the number is even, otherwise answer "no".'],
   calc: ['What is the result of the expression?'],
   gcd: ['Find the greatest common divisor of given numbers.'],
+  progression: ['What number is missing in the progression?'],
+  prime: ['Answer "yes" if given number is prime. Otherwise answer "no".'],
 };
 
 const playRound = (game) => {
@@ -49,7 +53,9 @@ const selectGame = (game, rule) => () => play(game, rule);
 const playEven = selectGame(evenGame, gameRules.even);
 const playCalc = selectGame(calcGame, gameRules.calc);
 const playGcd = selectGame(gcdGame, gameRules.gcd);
+const playProgression = selectGame(progressionGame, gameRules.progression);
+const playPrime = selectGame(primeGame, gameRules.prime);
 
 export {
-  playEven, playCalc, playGcd,
+  playEven, playCalc, playGcd, playProgression, playPrime,
 };

@@ -1,11 +1,12 @@
 import { getRandomNumber } from '../utils.js';
 
-const gcd = (a, b) => {
+const gcd = (number1, number2) => {
+  let [a, b] = [number1, number2];
   while (b !== 0) {
-  [a, b] = [b, a % b]
+    [a, b] = [b, a % b];
   }
-  return a
-}
+  return a;
+};
 
 const gcdGame = (maxNumber = 100) => {
   const a = getRandomNumber(maxNumber);
