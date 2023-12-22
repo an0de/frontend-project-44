@@ -13,4 +13,6 @@ const castYesNo = (val) => {
   return values[i % values.length];
 };
 
-export { castYesNo, isEven, getRandomNumber, interpolate };
+export {
+  castYesNo, isEven, getRandomNumber, interpolate,
+};
