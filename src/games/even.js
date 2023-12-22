@@ -1,5 +1,4 @@
 import { isEven, getRandomNumber } from '../utils.js';
-import { printQuestion, getUserAnswer } from '../cli.js';
 
 const castYesNo = (val) => {
   const values = ['no', 'yes'];
@@ -10,20 +9,10 @@ const castYesNo = (val) => {
   return values[i % values.length];
 };
 
-const castInt = (val) => {
-  const values = ['no', 'yes'];
-  return values.indexOf(val.toLowerCase());
-};
-
-const evenGame = () => {
-  const number = getRandomNumber(0xffffff);
-  printQuestion(number);
-  const userAnswer = getUserAnswer();
+const evenGame = (maxNumber = 0xffffff) => {
+  const number = getRandomNumber(maxNumber);
   const correctAnswer = castYesNo(isEven(number));
-  if (Number(isEven(number)) === castInt((userAnswer))) {
-    return [userAnswer, correctAnswer, true];
-  }
-  return [userAnswer, correctAnswer, false];
+  return [number, correctAnswer];
 };
 
 export default evenGame;

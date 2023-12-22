@@ -1,6 +1,8 @@
 import {
-  greet, printWrongAnswMsg, printCorrectMsg, printEndGameMsg, printGameRules,
+  greet, getUserAnswer, printWrongAnswMsg, printCorrectMsg, printEndGameMsg,
+  printGameRules, printQuestion,
 } from './cli.js';
+import { interpolate } from './utils.js';
 
 import evenGame from './games/even.js';
 import calcGame from './games/calc.js';
@@ -10,6 +12,13 @@ const gameRules = {
   even: ['Answer "yes" if the number is even, otherwise answer "no".'],
   calc: ['What is the result of the expression?'],
   gcd: ['Find the greatest common divisor of given numbers.'],
+};
+
+const playRound = (game) => {
+  const [task, correctAnswer] = game().map((el) => interpolate(el));
+  printQuestion(task);
+  const userAnswer = getUserAnswer();
+  return [userAnswer, correctAnswer, (correctAnswer === interpolate(userAnswer))];
 };
 
 const play = (game, rule = '') => {
@@ -22,7 +31,7 @@ const play = (game, rule = '') => {
   printGameRules(rule);
   while (score !== 3) {
     for (let cur = 0; cur < rounds; cur += 1) {
-      [userAnswer, correctAnswer, roundResult] = game();
+      [userAnswer, correctAnswer, roundResult] = playRound(game);
       if (roundResult === true) {
         score += 1;
         printCorrectMsg();
