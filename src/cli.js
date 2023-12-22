@@ -34,6 +34,13 @@ const printQuestion = (value) => {
 
 const getUserAnswer = () => readlineSync.question('Your answer: ');
 
+const printGameRules = (rules) => {
+  for (let i = 0; i < rules.length; i += 1) {
+    console.log(rules[i]);
+  }
+};
+
 export {
-  greet, printWrongAnswMsg, printCorrectMsg, printEndGameMsg, printQuestion, getUserAnswer,
+  greet, printWrongAnswMsg, printCorrectMsg, printEndGameMsg, printQuestion,
+  getUserAnswer, printGameRules,
 };
