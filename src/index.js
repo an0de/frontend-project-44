@@ -4,10 +4,12 @@ import {
 
 import evenGame from './games/even.js';
 import calcGame from './games/calc.js';
+import gcdGame from './games/gcd.js';
 
 const gameRules = {
   even: ['Answer "yes" if the number is even, otherwise answer "no".'],
   calc: ['What is the result of the expression?'],
+  gcd: ['Find the greatest common divisor of given numbers.'],
 };
 
 const play = (game, rule = '') => {
@@ -37,7 +39,8 @@ const play = (game, rule = '') => {
 const selectGame = (game, rule) => () => play(game, rule);
 const playEven = selectGame(evenGame, gameRules.even);
 const playCalc = selectGame(calcGame, gameRules.calc);
+const playGcd = selectGame(gcdGame, gameRules.gcd);
 
 export {
-  playEven, playCalc,
+  playEven, playCalc, playGcd,
 };
