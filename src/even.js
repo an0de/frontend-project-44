@@ -50,21 +50,21 @@ const playEven = () => {
 };
 
 const evenGame = () => {
-  let res = false;
-  let ans = '';
-  let val = 0;
+  let roundResult = false;
+  let userAnswer = '';
+  let correctAnswer = 0;
   let score = 0;
   const rounds = 3;
   const userName = greet();
   printEvenRules();
   while (score !== 3) {
     for (let cur = 0; cur < rounds; cur += 1) {
-      [ans, val, res] = playEven();
-      if (res === true) {
+      [userAnswer, correctAnswer, roundResult] = playEven();
+      if (roundResult === true) {
         score += 1;
         printCorrectMsg();
       } else {
-        printWrongAnswMsg(userName, ans, val);
+        printWrongAnswMsg(userName, userAnswer, correctAnswer);
         score = 0;
         break;
       }
