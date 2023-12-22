@@ -1,5 +1,6 @@
-import readlineSync from 'readline-sync';
-import greet from './cli.js';
+import {
+  greet, printWrongAnswMsg, printCorrectMsg, printEndGameMsg, printQuestion, getUserAnswer,
+} from './cli.js';
 
 const castYesNo = (val) => {
   const values = ['no', 'yes'];
@@ -21,32 +22,15 @@ const printEvenRules = () => {
   console.log('Answer "yes" if the number is even, otherwise answer "no".');
 };
 
-const printWrongAnswMsg = (userName, userAns, correctAns) => {
-  console.log(`'${userAns}' is wrong answer ;(. Correct answer was '${correctAns}'.`);
-  console.log(`Let's try again, ${userName}!`);
-};
-
-const printCorrectMsg = () => {
-  console.log('Correct!');
-};
-
-const printEndGameMsg = (userName) => {
-  console.log(`Congratulations, ${userName}!`);
-};
-
-const printQuestion = (value) => {
-  console.log(`Question: ${value}`);
-};
-
 const playEven = () => {
   const val = Math.floor(Math.random() * 0xffffff);
   printQuestion(val);
-  const userAns = readlineSync.question('Your answer: ');
-  const correctAns = castYesNo(isEven(val));
-  if (Number(isEven(val)) === castInt((userAns))) {
-    return [userAns, correctAns, true];
+  const userAnswer = getUserAnswer();
+  const correctAnswer = castYesNo(isEven(val));
+  if (Number(isEven(val)) === castInt((userAnswer))) {
+    return [userAnswer, correctAnswer, true];
   }
-  return [userAns, correctAns, false];
+  return [userAnswer, correctAnswer, false];
 };
 
 const evenGame = () => {

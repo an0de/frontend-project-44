@@ -15,4 +15,25 @@ const greet = () => {
   return getName();
 };
 
-export default greet;
+const printWrongAnswMsg = (userName, userAns, correctAns) => {
+  console.log(`'${userAns}' is wrong answer ;(. Correct answer was '${correctAns}'.`);
+  console.log(`Let's try again, ${userName}!`);
+};
+
+const printCorrectMsg = () => {
+  console.log('Correct!');
+};
+
+const printEndGameMsg = (userName) => {
+  console.log(`Congratulations, ${userName}!`);
+};
+
+const printQuestion = (value) => {
+  console.log(`Question: ${value}`);
+};
+
+const getUserAnswer = () => readlineSync.question('Your answer: ');
+
+export {
+  greet, printWrongAnswMsg, printCorrectMsg, printEndGameMsg, printQuestion, getUserAnswer,
+};
