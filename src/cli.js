@@ -10,9 +10,9 @@ const printWelcomeMsg = () => {
   console.log('Welcome to the Brain Games!');
 };
 
-const main = () => {
+const greet = () => {
   printWelcomeMsg();
-  getName();
+  return getName();
 };
 
-export default main;
+export default greet;

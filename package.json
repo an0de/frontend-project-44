@@ -1,6 +1,7 @@
 {
   "bin": {
-    "brain-games": "bin/brain-games.js"
+    "brain-games": "bin/brain-games.js",
+    "brain-even": "bin/brain-even.js"
   },
   "name": "@hexlet/code",
   "version": "1.0.0",
