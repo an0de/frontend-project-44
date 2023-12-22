@@ -3,11 +3,16 @@ import greet from './cli.js';
 
 const castYesNo = (val) => {
   const values = ['no', 'yes'];
-  const i = values.indexOf(val.toLowerCase());
-  if (i !== -1) {
-    return Boolean(i);
+  const i = Number(val);
+  if (Number.isNaN(i)) {
+    return values[0];
   }
-  return -1;
+  return values[i % values.length];
+};
+
+const castInt = (val) => {
+  const values = ['no', 'yes'];
+  return values.indexOf(val.toLowerCase());
 };
 
 const isEven = (n) => (n % 2 === 0);
@@ -16,10 +21,8 @@ const printEvenRules = () => {
   console.log('Answer "yes" if the number is even, otherwise answer "no".');
 };
 
-const printWrongAnswMsg = (userName, ans, val) => {
-  const answers = ['no', 'yes'];
-  const correct = answers.at(Number(isEven(val)));
-  console.log(`'${ans}' is wrong answer ;(. Correct answer was '${correct}'.`);
+const printWrongAnswMsg = (userName, userAns, correctAns) => {
+  console.log(`'${userAns}' is wrong answer ;(. Correct answer was '${correctAns}'.`);
   console.log(`Let's try again, ${userName}!`);
 };
 
@@ -38,21 +41,22 @@ const printQuestion = (value) => {
 const playEven = () => {
   const val = Math.floor(Math.random() * 0xffffff);
   printQuestion(val);
-  const ans = readlineSync.question('Your answer: ');
-  if (isEven(val) === castYesNo(ans)) {
-    return [ans, val, true];
+  const userAns = readlineSync.question('Your answer: ');
+  const correctAns = castYesNo(isEven(val));
+  if (Number(isEven(val)) === castInt((userAns))) {
+    return [userAns, correctAns, true];
   }
-  return [ans, val, false];
+  return [userAns, correctAns, false];
 };
 
 const evenGame = () => {
-  const userName = greet();
-  printEvenRules();
-  const rounds = 3;
   let res = false;
   let ans = '';
   let val = 0;
   let score = 0;
+  const rounds = 3;
+  const userName = greet();
+  printEvenRules();
   while (score !== 3) {
     for (let cur = 0; cur < rounds; cur += 1) {
       [ans, val, res] = playEven();
