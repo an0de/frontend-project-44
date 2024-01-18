@@ -33,20 +33,20 @@ const play = (game, rule = '') => {
   const rounds = 3;
   const userName = greet();
   printGameRules(rule);
-  while (score !== 3) {
-    for (let cur = 0; cur < rounds; cur += 1) {
-      [userAnswer, correctAnswer, roundResult] = playRound(game);
-      if (roundResult === true) {
-        score += 1;
-        printCorrectMsg();
-      } else {
-        printWrongAnswMsg(userName, userAnswer, correctAnswer);
-        score = 0;
-        break;
-      }
+  for (let cur = 0; cur < rounds; cur += 1) {
+    [userAnswer, correctAnswer, roundResult] = playRound(game);
+    if (roundResult === true) {
+      score += 1;
+      printCorrectMsg();
+    } else {
+      printWrongAnswMsg(userName, userAnswer, correctAnswer);
+      score = 0;
+      break;
     }
   }
-  printEndGameMsg(userName);
+  if (score === rounds) {
+    printEndGameMsg(userName);
+  }
 };
 
 const selectGame = (game, rule) => () => play(game, rule);
